@@ -17,6 +17,7 @@ class TestPage extends React.Component {
             checkboxGroup: [],
             input: '',
             number: null,
+            password: ''
         }
     }
 
@@ -53,12 +54,21 @@ class TestPage extends React.Component {
                     onChange: v=> this.setState({input: v}),
                     validationState: 'error',
                     validationMessage: 'error message',
-                    disabled: true,
+                    disabled: false,
                 }}/>
                 <fields.Number {...{
                     label: 'Number',
                     value: this.state.number,
                     onChange: v=> this.setState({number: v}),
+                    validationState: 'error',
+                    validationMessage: 'error message',
+                    disabled: false,
+                    hintText: 'hello'
+                }}/>
+                <fields.Password {...{
+                    label: 'Password',
+                    value: this.state.password,
+                    onChange: v=> this.setState({password: v}),
                     validationState: 'error',
                     validationMessage: 'error message',
                     disabled: false,
