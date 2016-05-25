@@ -26,7 +26,7 @@ class NumberField extends React.Component {
         } = this.props;
 
         const validationColor = utils.getValidationColor(validationState);
-        console.log(validationColor);
+
         return <TextField
             id={id}
             type="number"

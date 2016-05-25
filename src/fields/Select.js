@@ -1,5 +1,8 @@
 import React from 'react';
 import {cleanValue, formatItems} from 'rf-fields-utils';
+import utils from '../utils';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 const propTypes = {
     id: React.PropTypes.string,
@@ -9,43 +12,43 @@ const propTypes = {
     readOnly: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
 
-    placeholder: React.PropTypes.string,
     items: React.PropTypes.object // key:{label, readOnly, disabled} | key:label
 };
 
 const defaultProps = {
-    onChange(){},
-
-    placeholder: '-',
-    items: {}
+    onChange(){}
 };
 
 class Select extends React.Component {
     render() {
-        let {id, validationState, value, onChange, readOnly, disabled,
-            placeholder, items,
-            ...otherProps} = this.props;
+        let {
+            id, validationState, value, onChange, readOnly, disabled,
+            items,
+            ...otherProps
+        } = this.props;
 
         items = formatItems(items);
+        const validationColor = utils.getValidationColor(validationState);
 
-        return <div className={validationState ? ('has-'+validationState):''}>
-            <select {...{
-                className: "form-control",
-                value: value,
-                onChange: e=>onChange(e.target.value, e)
-            }}>
-                <option {...{value: '', disabled: true}}>{placeholder}</option>
-                {
-                    Object.keys(items).map((key, index)=> <option {...{
-                            key: key,
-                            value: key,
-                            readOnly: items[key].readOnly || readOnly,
-                            disabled: items[key].disabled || disabled
-                        }}>{items[key].label}</option>
-                    )
-                }
-            </select>
-        </div>
+        return <SelectField {...{
+            value,
+            onChange: (e, index, value)=> onChange(value, e),
+            disabled,
+            readOnly,
+            style: {margin: '-10px 0 -5px 0'},
+            errorStyle: validationColor ? {color: validationColor, display: 'none'} : undefined,
+            errorText: validationColor ? 'bug' : undefined
+        }}>
+            {
+                Object.keys(items).map((key, index)=> <MenuItem
+                    key={key}
+                    value={key}
+                    primaryText={items[key].label}
+                    disabled={items[key].disabled}
+                    readOnly={items[key].readOnly}
+                />)
+            }
+        </SelectField>
     }
 }
 

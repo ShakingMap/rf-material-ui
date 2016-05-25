@@ -18,7 +18,8 @@ class TestPage extends React.Component {
             input: '',
             number: null,
             password: '',
-            radioGroup: ''
+            radioGroup: '',
+            select: ''
         }
     }
 
@@ -112,6 +113,24 @@ class TestPage extends React.Component {
                             d: {label: 'D', disabled: true}
                         },
                         inline: true,
+                        disabled: false,
+                    }}/>
+                </Wrapper>
+                <Wrapper {...{
+                    label: 'Select',
+                    validationState: 'error',
+                    validationMessage: 'error message',
+                }}>
+                    <fields.Select {...{
+                        validationState: 'success',
+                        value: this.state.select,
+                        onChange: v=> this.setState({select: v}),
+                        items: {
+                            a: {label: 'A'},
+                            b: {label: 'B'},
+                            c: {label: 'C', readOnly: true},
+                            d: {label: 'D', disabled: true}
+                        },
                         disabled: false,
                     }}/>
                 </Wrapper>
