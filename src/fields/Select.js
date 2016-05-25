@@ -35,7 +35,7 @@ class Select extends React.Component {
             onChange: (e, index, value)=> onChange(value, e),
             disabled,
             readOnly,
-            style: {margin: '-10px 0 -5px 0'},
+            style: {width: '100%', margin: '-10px 0 -5px 0'},
             errorStyle: validationColor ? {color: validationColor, display: 'none'} : undefined,
             errorText: validationColor ? 'bug' : undefined
         }}>

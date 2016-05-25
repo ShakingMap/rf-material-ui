@@ -1,5 +1,7 @@
 import React from 'react';
 import {cleanValue} from 'rf-fields-utils';
+import TextField from 'material-ui/TextField';
+import utils from '../utils';
 
 const propTypes = {
     id: React.PropTypes.string,
@@ -18,19 +20,25 @@ const defaultProps = {
 
 class Textarea extends React.Component {
     render() {
-        let {id, validationState, value, onChange, readOnly, disabled, ...otherProps} = this.props;
+        let {
+            id, validationState, value, onChange, readOnly, disabled,
+            ...otherProps
+        } = this.props;
 
-        return <div className={validationState ? ('has-'+validationState):''}>
-            <textarea
-                id={id}
-                className="form-control"
-                value={value}
-                onChange={e=>onChange(e.target.value, e)}
-                readOnly={readOnly}
-                disabled={disabled}
-                {...otherProps}
-            />
-        </div>
+        const validationColor = utils.getValidationColor(validationState);
+
+        return <TextField
+            id={id}
+            value={value}
+            onChange={e=>onChange(e.target.value, e)}
+            readOnly={readOnly}
+            disabled={disabled}
+            multiLine
+            errorStyle={validationColor ? {color: validationColor, display: 'none'}:undefined}
+            errorText={validationColor ? 'bug':undefined}
+            style={{width: '100%', margin: '-10px 0 -5px 0'}}
+            {...otherProps}
+        />;
     }
 }
 

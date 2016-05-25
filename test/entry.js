@@ -19,7 +19,9 @@ class TestPage extends React.Component {
             number: null,
             password: '',
             radioGroup: '',
-            select: ''
+            select: '',
+            text: '',
+            textarea: ''
         }
     }
 
@@ -99,7 +101,7 @@ class TestPage extends React.Component {
                     }}/>
                 </Wrapper>
                 <Wrapper {...{
-                    label: 'RadioGroup Group',
+                    label: 'Radio Group',
                     validationState: 'error',
                     validationMessage: 'error message',
                 }}>
@@ -132,6 +134,32 @@ class TestPage extends React.Component {
                             d: {label: 'D', disabled: true}
                         },
                         disabled: false,
+                    }}/>
+                </Wrapper>
+                <Wrapper {...{
+                    validationState: 'success',
+                    validationMessage: 'error message',
+                    label: 'Text',
+                }}>
+                    <fields.Text {...{
+                        value: this.state.text,
+                        onChange: v=> this.setState({text: v}),
+                        validationState: 'warning',
+                        disabled: false,
+                        hintText: 'hello'
+                    }}/>
+                </Wrapper>
+                <Wrapper {...{
+                    validationState: 'success',
+                    validationMessage: 'error message',
+                    label: 'Textarea',
+                }}>
+                    <fields.Textarea {...{
+                        value: this.state.textarea,
+                        onChange: v=> this.setState({textarea: v}),
+                        validationState: 'warning',
+                        disabled: false,
+                        hintText: 'hello'
                     }}/>
                 </Wrapper>
             </div>
