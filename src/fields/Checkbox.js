@@ -1,6 +1,7 @@
 import React from 'react';
 import MUICheckbox from 'material-ui/Checkbox';
 import Wrapper from '../Wrapper';
+import {cleanValue} from 'rf-fields-utils';
 
 const propTypes = {
     id: React.PropTypes.string,
@@ -36,9 +37,7 @@ class Checkbox extends React.Component {
 
         if (!id) id = this.id;
 
-        return <Wrapper {...{
-            validationState, validationMessage, label, id
-        }}>
+        return <Wrapper {...{validationState, validationMessage, label, id}}>
             <MUICheckbox
                 id={id}
                 label={text}
@@ -54,6 +53,6 @@ class Checkbox extends React.Component {
 
 Checkbox.propTypes = propTypes;
 Checkbox.defaultProps = defaultProps;
-Checkbox.cleanValue = (value, options) => value === undefined ? value : !!value;
+Checkbox.cleanValue = cleanValue.bool;
 
 export default Checkbox;

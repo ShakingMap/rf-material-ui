@@ -14,19 +14,38 @@ class TestPage extends React.Component {
         super(props);
         this.state = {
             checkbox: false,
+            checkboxGroup: [],
         }
     }
 
     render() {
         return <MuiThemeProvider muiTheme={getMuiTheme()}>
-            <fields.Checkbox {...{
-                label: 'Checkbox',
-                text: 'Check Me',
-                value: this.state.checkbox,
-                onChange: v=> this.setState({checkbox: v}),
-                validationState: 'error',
-                validationMessage: 'error message'
-            }}/>
+            <div>
+                <fields.Checkbox {...{
+                    label: 'Checkbox',
+                    text: 'Check Me',
+                    value: this.state.checkbox,
+                    onChange: v=> this.setState({checkbox: v}),
+                    validationState: 'error',
+                    validationMessage: 'error message',
+                    disabled: false,
+                }}/>
+                <fields.CheckboxGroup {...{
+                    label: 'Checkbox Group',
+                    value: this.state.checkboxGroup,
+                    onChange: v=> this.setState({checkboxGroup: v}),
+                    items: {
+                        a: {label: 'A'},
+                        b: {label: 'B'},
+                        c: {label: 'C', readOnly: true},
+                        d: {label: 'D', disabled: true}
+                    },
+                    inline: true,
+                    validationState: 'error',
+                    validationMessage: 'error message',
+                    disabled: false,
+                }}/>
+            </div>
         </MuiThemeProvider>
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {cleanValue, formatItems} from 'rf-fields-utils';
 
 const propTypes = {
     id: React.PropTypes.string,
@@ -22,11 +23,7 @@ class Select extends React.Component {
             items,
             ...otherProps} = this.props;
 
-        const validItems = {};
-        Object.keys(items).forEach(key=> {
-            validItems[key] = typeof items[key] === 'object' ?  items[key] : {label: items[key]}
-        });
-        items = validItems;
+        items = formatItems(items);
         
         return <div className={validationState ? ('has-'+validationState):''}>
             <select {...{
@@ -52,10 +49,6 @@ class Select extends React.Component {
 
 Select.propTypes = propTypes;
 Select.defaultProps = defaultProps;
-Select.cleanValue = (value, {items}) => {
-    if (value === undefined) return value;
-    else if (!Array.isArray(value)) return [];
-    else return value.filter(key=>!!items[key])
-};
+Select.cleanValue = cleanValue.manyOfItems;
 
 export default Select;

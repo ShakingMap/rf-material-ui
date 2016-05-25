@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import {cleanValue} from 'rf-fields-utils';
 
 const propTypes = {
     id: React.PropTypes.string,
@@ -43,7 +44,6 @@ class DatetimeLocal extends React.Component {
 
     getInnerValue() {
         const {value, display} = this.props;
-        if (value === undefined) return undefined;
         if (value === null) return '';
 
         // value is a date object...
@@ -77,10 +77,6 @@ class DatetimeLocal extends React.Component {
 
 DatetimeLocal.propTypes = propTypes;
 DatetimeLocal.defaultProps = defaultProps;
-DatetimeLocal.cleanValue = (value, options)=> {
-    if (value === undefined) return value;
-    else if (value instanceof Date) return value;
-    else return null;
-};
+DatetimeLocal.cleanValue = cleanValue.date;
 
 export default DatetimeLocal;

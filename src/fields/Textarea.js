@@ -1,4 +1,5 @@
 import React from 'react';
+import {cleanValue} from 'rf-fields-utils';
 
 const propTypes = {
     id: React.PropTypes.string,
@@ -35,11 +36,6 @@ class Textarea extends React.Component {
 
 Textarea.propTypes = propTypes;
 Textarea.defaultProps = defaultProps;
-Textarea.cleanValue = (value, options) => {
-    if (value === undefined) return value;
-    else if (value === null) return '';
-    else if (typeof value === 'string') return value;
-    else return String(value);
-};
+Textarea.cleanValue = cleanValue.string;
 
 export default Textarea;

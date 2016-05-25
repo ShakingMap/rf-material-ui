@@ -1,4 +1,5 @@
 import React from 'react';
+import {cleanValue} from 'rf-fields-utils';
 
 const propTypes = {
     id: React.PropTypes.string,
@@ -61,11 +62,6 @@ class Password extends React.Component {
 
 Password.propTypes = propTypes;
 Password.defaultProps = defaultProps;
-Password.cleanValue = (value, options) => {
-    if (value === undefined) return value;
-    else if (value === null) return '';
-    else if (typeof value === 'string') return value;
-    else return String(value);
-};
+Password.cleanValue = cleanValue.string;
 
 export default Password;

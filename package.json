@@ -43,5 +43,8 @@
     "form",
     "rf-form",
     "material-ui"
-  ]
+  ],
+  "dependencies": {
+    "rf-fields-utils": "^0.2.5"
+  }
 }
