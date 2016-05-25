@@ -1,4 +1,13 @@
 import React from 'react';
+import Paper from 'material-ui/Paper';
+import IconButton from 'material-ui/IconButton';
+import AddIcon from 'material-ui/svg-icons/content/add'
+import RemoveIcon from 'material-ui/svg-icons/content/remove'
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit'
+import OkIcon from 'material-ui/svg-icons/action/done';
+import UpIcon from 'material-ui/svg-icons/navigation/arrow-upward';
+import DownIcon from 'material-ui/svg-icons/navigation/arrow-downward';
+
 
 const propTypes = {
     validationState: React.PropTypes.any,
@@ -36,60 +45,53 @@ class Array extends React.Component {
         const {validationState, onInsert, onRemove, onMove, children, disabled} = this.props;
         const {updating} = this.state;
 
-        return <div className="panel panel-default">
-            <div className="panel-body">
+        return <Paper style={{padding: '16px'}}>
+            {
+                !disabled ?
+                    <div className="array-actions" style={{marginBottom: '10px'}}>
+                        {
+                            updating ?
+                                <IconButton onClick={()=>this.setState({updating: false})}>
+                                    <OkIcon/>
+                                </IconButton>
+                                :
+                                <IconButton onClick={()=>this.setState({updating: true})}>
+                                    <EditIcon/>
+                                </IconButton>
+                        }
+                    </div>
+                    : null
+            }
+            {children.map((child, index)=><div key={index}>
                 {
-                    !disabled ?
-                        <div className="array-actions" style={{marginBottom: '10px'}}>
-                            {
-                                updating ?
-                                    <button type="button" className="btn btn-primary"
-                                            onClick={()=>this.setState({updating: false})}>
-                                        <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                    </button>
-                                    :
-                                    <button type="button" className="btn btn-primary"
-                                            onClick={()=>this.setState({updating: true})}>
-                                        <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    </button>
-                            }
+                    !disabled && updating ?
+                        <div className="array-item-actions" style={{marginBottom: '10px'}}>
+                            <IconButton style={{marginRight: '10px'}} onClick={()=>onInsert(index)}>
+                                <AddIcon/>
+                            </IconButton>
+                            <IconButton style={{marginRight: '10px'}} onClick={()=>onRemove(index)}>
+                                <RemoveIcon/>
+                            </IconButton>
+                            <IconButton style={{marginRight: '10px'}}
+                                        onClick={index > 0 ? ()=>onMove(index, index-1):undefined}>
+                                <UpIcon/>
+                            </IconButton>
+                            <IconButton onClick={index < children.length -1? ()=>onMove(index, index+1): undefined}>
+                                <DownIcon/>
+                            </IconButton>
                         </div>
                         : null
                 }
-                {children.map((child, index)=><div key={index}>
-                    {
-                        !disabled && updating ?
-                            <div className="array-item-actions" style={{marginBottom: '10px'}}>
-                                <button type="button" style={{marginRight: '10px'}} className="btn btn-primary"
-                                        onClick={()=>onInsert(index)}>
-                                    <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" style={{marginRight: '10px'}} className="btn btn-primary"
-                                        onClick={()=>onRemove(index)}>
-                                    <span className="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" style={{marginRight: '10px'}} className="btn btn-primary"
-                                        onClick={index > 0 ? ()=>onMove(index, index-1):null}>
-                                    <span className="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" className="btn btn-primary"
-                                        onClick={index < children.length -1? ()=>onMove(index, index+1): null}>
-                                    <span className="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                            : null
-                    }
-                    {child}
-                </div>)}
-                {
-                    !disabled && updating ?
-                        <button type="button" className="btn btn-primary"
-                                onClick={()=>onInsert(children.length)}>
-                            <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </button> : null
-                }
-            </div>
-        </div>
+                {child}
+            </div>)}
+            {
+                !disabled && updating ?
+                    <IconButton style={{marginRight: '10px'}} onClick={()=>onInsert(children.length)}>
+                        <AddIcon/>
+                    </IconButton>
+                    : null
+            }
+        </Paper>
     }
 }
 

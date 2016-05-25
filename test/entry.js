@@ -205,6 +205,53 @@ class TestPage extends React.Component {
                         </Wrapper>
                     </Group>
                 </Wrapper>
+                <Wrapper {...{label: 'Array'}}>
+                    <Array {...{
+                        onInsert(index) {console.log('insert ', index)},
+                        onRemove(index) {console.log('remove ', index)},
+                        onMove(from, to) {console.log('move ', from, ' ', to)},
+                    }}>
+                        <Wrapper {...{
+                            validationState: 'success',
+                            validationMessage: 'error message',
+                            label: 'Text',
+                        }}>
+                            <fields.Text {...{
+                                value: this.state.text,
+                                onChange: v=> this.setState({text: v}),
+                                validationState: 'warning',
+                                disabled: false,
+                                hintText: 'hello'
+                            }}/>
+                        </Wrapper>
+                        <Wrapper {...{
+                            validationState: 'success',
+                            validationMessage: 'error message',
+                            label: 'Text',
+                        }}>
+                            <fields.Text {...{
+                                value: this.state.text,
+                                onChange: v=> this.setState({text: v}),
+                                validationState: 'warning',
+                                disabled: false,
+                                hintText: 'hello'
+                            }}/>
+                        </Wrapper>
+                        <Wrapper {...{
+                            validationState: 'success',
+                            validationMessage: 'error message',
+                            label: 'Text',
+                        }}>
+                            <fields.Text {...{
+                                value: this.state.text,
+                                onChange: v=> this.setState({text: v}),
+                                validationState: 'warning',
+                                disabled: false,
+                                hintText: 'hello'
+                            }}/>
+                        </Wrapper>
+                    </Array>
+                </Wrapper>
             </div>
         </MuiThemeProvider>
     }
