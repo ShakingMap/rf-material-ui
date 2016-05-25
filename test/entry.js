@@ -16,6 +16,7 @@ class TestPage extends React.Component {
             checkbox: false,
             checkboxGroup: [],
             input: '',
+            number: null,
         }
     }
 
@@ -52,7 +53,16 @@ class TestPage extends React.Component {
                     onChange: v=> this.setState({input: v}),
                     validationState: 'error',
                     validationMessage: 'error message',
+                    disabled: true,
+                }}/>
+                <fields.Number {...{
+                    label: 'Number',
+                    value: this.state.number,
+                    onChange: v=> this.setState({number: v}),
+                    validationState: 'error',
+                    validationMessage: 'error message',
                     disabled: false,
+                    hintText: 'hello'
                 }}/>
             </div>
         </MuiThemeProvider>
