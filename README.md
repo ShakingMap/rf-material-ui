@@ -1,11 +1,11 @@
-# RF Bootstrap3
-[rf-form](https://github.com/ShakingMap/rf-form) components suit for bootstrap3.
+# RF material-ui
+[rf-form](https://github.com/ShakingMap/rf-form) components suit for material-ui.
 
 This docs list the components of this suit. refer to [rf-form](https://github.com/ShakingMap/rf-form#apis) to see default apis.
 
 ## Installation
-- install bootstrap3 styles. this package is roughly tested with bootstrap 3.3.6
-- `npm install --save rf-bootstrap3`
+- install material-ui from npm. this package is roughly tested with material-ui 0.15.0
+- `npm install --save rf-material-ui`
 
 ## Components
 
@@ -22,33 +22,25 @@ this is a general input field. all other props will be passed down to the inner 
 
 #### Text
 - value - string
-- placeholder - string
 
 #### Textarea
 - value - string
-- placeholder- string
-- rows - number
 
 #### Number
 - value - number
-- placeholder - string
 
 #### Password
 - value - string
 - display - optional 'show' or 'hide'
-- placeholder: - string
 
 #### File
-- value - object as {path}
-- onChange - func(value, event), but value is an object as {path, file, files}
+NOT IMPLEMENTED
 
 #### Date
-- value - js Date
-- display - 'utc' or 'local'. control how to display the value
+NOT IMPLEMENTED
 
 #### DatetimeLocal
-- value - js Date
-- display - 'utc' or 'local'. control how to display the value
+NOT IMPLEMENTED
 
 #### Checkbox
 - value - bool
@@ -67,11 +59,9 @@ this is a general input field. all other props will be passed down to the inner 
 #### Select
 - value - string
 - items - object as {key: {label, readOnly, disabled}} or {key:label}, each key is for one item
-- placeholder - bool. if true, display as inline style
 
 #### MultipleSelect
-- value - array of string
-- items - object as {key: {label, readOnly, disabled}} or {key:label}, each key is for one item
+NOT IMPLEMENTED
 
 ## License
 ISC
