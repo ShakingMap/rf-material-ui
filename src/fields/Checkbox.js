@@ -1,19 +1,17 @@
 import React from 'react';
 import MUICheckbox from 'material-ui/Checkbox';
-import Wrapper from '../Wrapper';
 import {cleanValue} from 'rf-fields-utils';
+import utils from '../utils';
 
 const propTypes = {
     id: React.PropTypes.string,
     validationState: React.PropTypes.any,
-    validationMessage: React.PropTypes.string,
     value: React.PropTypes.bool,
     onChange: React.PropTypes.func,
     readOnly: React.PropTypes.bool,
     disabled: React.PropTypes.bool,
 
-    label: React.PropTypes.string,
-    text: React.PropTypes.string
+    label: React.PropTypes.string
 
     // other props will be passed down to inner input directly
 };
@@ -30,24 +28,24 @@ class Checkbox extends React.Component {
 
     render() {
         let {
-            id, validationState, validationMessage, value, onChange, readOnly, disabled,
-            label, text,
+            id, validationState, value, onChange, readOnly, disabled,
+            label,
             ...otherProps
         } = this.props;
 
         if (!id) id = this.id;
+        const validationColor = utils.getValidationColor(validationState);
 
-        return <Wrapper {...{validationState, validationMessage, label, id}}>
-            <MUICheckbox
-                id={id}
-                label={text}
-                checked={value}
-                onCheck={(e, checked)=>onChange(checked, e)}
-                readOnly={readOnly}
-                disabled={disabled}
-                {...otherProps}
-            />
-        </Wrapper>
+        return <MUICheckbox
+            id={id}
+            label={label}
+            checked={value}
+            onCheck={(e, checked)=>onChange(checked, e)}
+            readOnly={readOnly}
+            disabled={disabled}
+            labelStyle={{color: validationColor}}
+            {...otherProps}
+        />
     }
 }
 

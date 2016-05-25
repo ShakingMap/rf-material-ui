@@ -15,9 +15,9 @@ class Wrapper extends React.Component {
         const {label, validationState, validationMessage, id, children} = this.props;
         const validationColor = utils.getValidationColor(validationState) || utils.greyColor;
 
-        return <div style={{marginBottom: '5px'}}>
+        return <div style={{marginBottom: '20px'}}>
             {label ? <Label style={{color: validationColor}} htmlFor={id}>{label}</Label> : null}
-            <div style={{margin: '5px 0'}}>
+            <div style={{margin: '10px 0 5px 0'}}>
                 {children}
             </div>
             {validationMessage ? <HelperText style={{color: validationColor}}>{validationMessage}</HelperText> : null}

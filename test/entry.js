@@ -17,63 +17,104 @@ class TestPage extends React.Component {
             checkboxGroup: [],
             input: '',
             number: null,
-            password: ''
+            password: '',
+            radioGroup: ''
         }
     }
 
     render() {
         return <MuiThemeProvider muiTheme={getMuiTheme()}>
             <div>
-                <fields.Checkbox {...{
+                <Wrapper {...{
+                    validationState: 'error',
+                    validationMessage: 'error message',
                     label: 'Checkbox',
-                    text: 'Check Me',
-                    value: this.state.checkbox,
-                    onChange: v=> this.setState({checkbox: v}),
-                    validationState: 'error',
-                    validationMessage: 'error message',
-                    disabled: false,
-                }}/>
-                <fields.CheckboxGroup {...{
+                }}>
+                    <fields.Checkbox {...{
+                        validationState: 'warning',
+                        label: 'Check Me',
+                        value: this.state.checkbox,
+                        onChange: v=> this.setState({checkbox: v}),
+                        disabled: false,
+                    }}/>
+                </Wrapper>
+                <Wrapper {...{
                     label: 'Checkbox Group',
-                    value: this.state.checkboxGroup,
-                    onChange: v=> this.setState({checkboxGroup: v}),
-                    items: {
-                        a: {label: 'A'},
-                        b: {label: 'B'},
-                        c: {label: 'C', readOnly: true},
-                        d: {label: 'D', disabled: true}
-                    },
-                    inline: true,
                     validationState: 'error',
                     validationMessage: 'error message',
-                    disabled: false,
-                }}/>
-                <fields.Input {...{
+                }}>
+                    <fields.CheckboxGroup {...{
+                        value: this.state.checkboxGroup,
+                        validationState: 'success',
+                        onChange: v=> this.setState({checkboxGroup: v}),
+                        items: {
+                            a: {label: 'A'},
+                            b: {label: 'B'},
+                            c: {label: 'C', readOnly: true},
+                            d: {label: 'D', disabled: true}
+                        },
+                        inline: true,
+                        disabled: false,
+                    }}/>
+
+                </Wrapper>
+                <Wrapper {...{
+                    validationState: 'error',
+                    validationMessage: 'error message',
                     label: 'Input',
-                    value: this.state.input,
-                    onChange: v=> this.setState({input: v}),
-                    validationState: 'error',
-                    validationMessage: 'error message',
-                    disabled: false,
-                }}/>
-                <fields.Number {...{
+                }}>
+                    <fields.Input {...{
+                        value: this.state.input,
+                        onChange: v=> this.setState({input: v}),
+                        disabled: false,
+                    }}/>
+
+                </Wrapper>
+                <Wrapper {...{
                     label: 'Number',
-                    value: this.state.number,
-                    onChange: v=> this.setState({number: v}),
                     validationState: 'error',
                     validationMessage: 'error message',
-                    disabled: false,
-                    hintText: 'hello'
-                }}/>
-                <fields.Password {...{
+                }}>
+                    <fields.Number {...{
+                        value: this.state.number,
+                        onChange: v=> this.setState({number: v}),
+                        disabled: false,
+                        hintText: 'hello',
+                        validationState: 'warning'
+                    }}/>
+
+                </Wrapper>
+                <Wrapper {...{
+                    validationState: 'success',
+                    validationMessage: 'error message',
                     label: 'Password',
-                    value: this.state.password,
-                    onChange: v=> this.setState({password: v}),
+                }}>
+                    <fields.Password {...{
+                        value: this.state.password,
+                        onChange: v=> this.setState({password: v}),
+                        validationState: 'success',
+                        disabled: false,
+                        hintText: 'hello'
+                    }}/>
+                </Wrapper>
+                <Wrapper {...{
+                    label: 'RadioGroup Group',
                     validationState: 'error',
                     validationMessage: 'error message',
-                    disabled: false,
-                    hintText: 'hello'
-                }}/>
+                }}>
+                    <fields.RadioGroup {...{
+                        value: this.state.radioGroup,
+                        onChange: v=> this.setState({radioGroup: v}),
+                        items: {
+                            a: {label: 'A'},
+                            b: {label: 'B'},
+                            c: {label: 'C', readOnly: true},
+                            d: {label: 'D', disabled: true}
+                        },
+                        inline: true,
+                        disabled: false,
+                    }}/>
+                </Wrapper>
             </div>
         </MuiThemeProvider>
     }

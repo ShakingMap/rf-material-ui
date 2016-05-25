@@ -1,5 +1,7 @@
 import React from 'react';
 import {cleanValue, formatItems} from 'rf-fields-utils';
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+import utils from '../utils';
 
 const propTypes = {
     id: React.PropTypes.string,
@@ -21,36 +23,32 @@ const defaultProps = {
 class RadioGroup extends React.Component {
     constructor(props) {
         super(props);
-        this.groupName = Math.random() + '';
+        this.radioGroupName = Math.random() + ''
     }
 
     render() {
-        let {id, validationState, value, onChange, readOnly, disabled,
+        let {
+            id, validationState, value, onChange, readOnly, disabled,
             items, inline,
-            ...otherProps} = this.props;
+            ...otherProps
+        } = this.props;
 
         items = formatItems(items);
-        
-        return <div className={validationState ? ('has-'+validationState):''}>
+        const validationColor = utils.getValidationColor(validationState);
+
+        return <RadioButtonGroup name={this.radioGroupName} valueSelected={value} onChange={(e,v)=>onChange(v,e)}>
             {
-                Object.keys(items).map((key, index)=> <div key={key} className={inline? 'radio-inline':'radio'}>
-                    <label>
-                        <input
-                            {...{
-                                ref: key,
-                                name: this.groupName,
-                                type: 'radio',
-                                checked: value === key,
-                                disabled: items[key].disabled || disabled,
-                                readOnly: items[key].readOnly || readOnly,
-                                onChange: e=> onChange(key, e)
-                            }}
-                        />
-                        {items[key].label}
-                    </label>
-                </div>)
+                Object.keys(items).map((key, index)=> <RadioButton
+                    key={index}
+                    value={key}
+                    style={inline? {display: 'inline-block', width: 'auto', marginRight: '30px'}:null}
+                    label={items[key].label}
+                    readOnly={items[key].readOnly || readOnly}
+                    disabled={items[key].disabled || disabled}
+                    labelStyle={{color: validationColor}}
+                />)
             }
-        </div>
+        </RadioButtonGroup>
     }
 }
 
