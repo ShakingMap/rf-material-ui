@@ -162,6 +162,49 @@ class TestPage extends React.Component {
                         hintText: 'hello'
                     }}/>
                 </Wrapper>
+                <Wrapper {...{label: 'Group'}}>
+                    <Group>
+                        <Wrapper {...{
+                            validationState: 'success',
+                            validationMessage: 'error message',
+                            label: 'Text',
+                        }}>
+                            <fields.Text {...{
+                                value: this.state.text,
+                                onChange: v=> this.setState({text: v}),
+                                validationState: 'warning',
+                                disabled: false,
+                                hintText: 'hello'
+                            }}/>
+                        </Wrapper>
+                        <Wrapper {...{
+                            validationState: 'success',
+                            validationMessage: 'error message',
+                            label: 'Text',
+                        }}>
+                            <fields.Text {...{
+                                value: this.state.text,
+                                onChange: v=> this.setState({text: v}),
+                                validationState: 'warning',
+                                disabled: false,
+                                hintText: 'hello'
+                            }}/>
+                        </Wrapper>
+                        <Wrapper {...{
+                            validationState: 'success',
+                            validationMessage: 'error message',
+                            label: 'Text',
+                        }}>
+                            <fields.Text {...{
+                                value: this.state.text,
+                                onChange: v=> this.setState({text: v}),
+                                validationState: 'warning',
+                                disabled: false,
+                                hintText: 'hello'
+                            }}/>
+                        </Wrapper>
+                    </Group>
+                </Wrapper>
             </div>
         </MuiThemeProvider>
     }
