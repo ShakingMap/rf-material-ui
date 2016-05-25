@@ -3,7 +3,8 @@ import React from 'react';
 const labelStyle = {
     lineHeight: '12px',
     fontSize: '12px',
-    fontFamily: 'Roboto, sans-serif'
+    fontFamily: 'Roboto, sans-serif',
+    WebkitUserSelect: 'none'
 };
 
 export default (props)=> {
