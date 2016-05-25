@@ -15,6 +15,7 @@ class TestPage extends React.Component {
         this.state = {
             checkbox: false,
             checkboxGroup: [],
+            input: '',
         }
     }
 
@@ -41,6 +42,14 @@ class TestPage extends React.Component {
                         d: {label: 'D', disabled: true}
                     },
                     inline: true,
+                    validationState: 'error',
+                    validationMessage: 'error message',
+                    disabled: false,
+                }}/>
+                <fields.Input {...{
+                    label: 'Input',
+                    value: this.state.input,
+                    onChange: v=> this.setState({input: v}),
                     validationState: 'error',
                     validationMessage: 'error message',
                     disabled: false,
